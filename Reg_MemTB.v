@@ -2,7 +2,7 @@
 
 // Testbench for verilog register system.
 
-module Testbench ();
+module Mem_Testbench ();
   reg clk, RD_en1, RD_en2, WR_en;
   reg[2:0] RD_addr1, RD_addr2, WR_addr;
   reg[7:0] WR_data;

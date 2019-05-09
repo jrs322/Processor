@@ -1,4 +1,4 @@
-module Testbench();
+module ALU_Testbench();
   //A, B, branch_addr, op, CLK, out, co_flag, eq_flag, branch_flag
   reg[7:0] in1, in2;
   reg[2:0] op;

@@ -24,33 +24,33 @@ module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
       end
       3'b001: begin
         $display("Add A + B into C");
-        {co_flag, out} <= A + B;
+        {co_flag, out} = A + B;
         branch_flag <= 1'b0;
         eq_flag <= 1'b0;
       end
       3'b010: begin
         $display("Sub: A - B into C");
-        {co_flag, out} <= A - B;
+        {co_flag, out} = A - B;
         branch_flag <= 1'b0;
         eq_flag <= 1'b0;
       end
       3'b011: begin
         $display("And: A & B into C");
-        out <= A & B;
+        out = A & B;
         co_flag <= 1'b0;
         eq_flag <= 1'b0;
         branch_flag <= 1'b0;
       end
       3'b100: begin
         $display("not: ~A into C");
-        out <= ~A;
+        out = ~A;
         branch_flag <= 1'b0;
         co_flag <= 1'b0;
         eq_flag <= 1'b0;
       end
       3'b101: begin
         $display("or: A | B into C");
-        out <= A | B;
+        out = A | B;
         branch_flag <= 1'b0;
         co_flag <= 1'b0;
         eq_flag <= 1'b0;
@@ -60,7 +60,7 @@ module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
         if (A == B)
           begin
             $display("Equal");
-            out <= 8'b01;
+            out = 8'b01;
             eq_flag <= 1'b1;
             branch_flag <= 1'b0;
             co_flag <= 1'b0;
@@ -68,7 +68,7 @@ module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
         else
           begin
             $display("Not equal");
-            out <= 8'b0;
+            out = 8'b0;
             eq_flag <= 1'b0;
             branch_flag <= 1'b0;
             co_flag <= 1'b0;
@@ -77,14 +77,14 @@ module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
       3'b111: begin
         if (eq_flag) begin
           $display("branched");
-          out <= {2'b0, branch_addr};
+          out = {2'b0, branch_addr};
           eq_flag <= 1'b0;
           branch_flag <= 1'b1;
           co_flag <= 1'b0;
         end
         else begin// not taken
           $display("not branched");
-          out <= 8'b0;
+          out = 8'b0;
           eq_flag <= 1'b0;
           branch_flag <= 1'b1;
           co_flag <= 1'b0;
