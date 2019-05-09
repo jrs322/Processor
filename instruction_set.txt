@@ -5,10 +5,9 @@ COMMANDS:
   SUB: C = A - B
   AND: C = A & B
   NOT: C = ~A
+  OR:  C = A | B
   EQ:  C = 11111111 or 00000000
   BRANCHEQ: if C address  = 11111111 branch else do nothing
-  LOAD: LOAD MEM(a+b) into REG(c)
-  STORE: Store REg(c) into MEM(a+b)
 
 INSTR BIT REQ: 14 bit instructions
   A ADDRESS: 3 BIT
@@ -23,10 +22,3 @@ LAYOUT:
 ADD/SUB/AND/NOT [OP][C][A][B]
 BRANCH [OP][EQ][BR]
 MEM [OP][REG][MEM]
-
-INTRUCTION REGISTER
-  64 12 BIT ARRAYS
-MEMORY
-  64 8 BIT ARRAYS
-REGFILES
-  8 8 BIT ARRAYS
