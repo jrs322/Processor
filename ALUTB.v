@@ -1,5 +1,5 @@
 module Testbench();
-  //A, B, branch_addr, op, CLK, out, co_flag, zero_flag
+  //A, B, branch_addr, op, CLK, out, co_flag, eq_flag, branch_flag
   reg[7:0] in1, in2;
   reg[2:0] op;
   reg[5:0] addr;
@@ -53,7 +53,7 @@ module Testbench();
     $display("addr = %b, result = %b", addr, result);
   end
   always begin
-    #5 CLK = ~CLK
+    #5 CLK = ~CLK;
   end
   always begin
     #10 $display("op = %b, A = %b, B = %b, flags[B: %b, C: %b, E: %b], result = %b",
@@ -61,4 +61,5 @@ module Testbench();
     if (BRANCH) begin
       $display("Branch addr = %b", addr);
     end
-endmodule //
+  end
+endmodule
