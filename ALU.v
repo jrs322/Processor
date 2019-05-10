@@ -1,10 +1,9 @@
-module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
+module ALU(A, B, branch_addr, instr, out, co_flag, eq_flag, branch_flag);
   //Creat an 8-bit ALU for a pipeline CPU
   //Instructions available ADD, SUB, INC, DEC, AND, OR, XOR, NOT
   input[7:0] A, B;
   input[2:0] instr;
   input[5:0] branch_addr;
-  input CLK;
   output reg [7:0] out;
   output reg co_flag;
   output reg eq_flag;
@@ -14,7 +13,7 @@ module ALU(A, B, branch_addr, instr, CLK, out, co_flag, eq_flag, branch_flag);
     eq_flag <= 1'b0;
     branch_flag <= 1'b0;
   end
-  always @ (posedge CLK ) begin
+  always @ (A or B) begin
     case (instr)
       3'b000: begin
         $display("Do nothing");
