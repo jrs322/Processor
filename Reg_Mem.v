@@ -6,14 +6,6 @@ module register_file(clk, rd_addr1, rd_addr2, rd_en1, rd_en2, wr_addr, wr_en, wr
   output reg[7:0] rd_out1, rd_out2;
   output reg wr_success;
   reg[7:0] reg_file[7:0]; //creates 8 x 1 byte array
-  integer i;
-  initial begin
-      for (i = 0; i < 8; i = i + 1)
-        begin
-          reg_file[i] <= 8'b0;
-          $display("initialized file %d, data = %b", i, reg_file[i]);
-        end
-  end
   always @ (posedge clk)
     begin
       case({rd_en2,rd_en1})
@@ -47,7 +39,7 @@ module register_file(clk, rd_addr1, rd_addr2, rd_en1, rd_en2, wr_addr, wr_en, wr
       else
         $display("write not enabled");
     end
-    always begin
+    initial begin
       $monitor("reg0 = %d reg1 = %d reg2 = %d reg3 = %d reg4 = %d reg5 = %d reg6 = %d reg7 = %d",
                 reg_file[0], reg_file[1], reg_file[2], reg_file[3], reg_file[4], reg_file[5], reg_file[6], reg_file[7]);
     end
